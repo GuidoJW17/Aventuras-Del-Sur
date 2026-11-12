@@ -1,0 +1,35 @@
+CREDENCIALES EV3 AVENTURAS DEL SUR:
+
+ADMIN:
+
+Usuario: admin
+Contraseña: admin12345
+
+---------
+
+GUIA/OPERADOR:
+
+Guia 1 Widow:
+
+Usuario: Widow
+Contraseña: Guia1234
+
+Guia 2 Martin:
+
+Usuario: Martin
+Contraseña: Guia1234
+
+--------
+
+TURISTA:
+
+Turista 1 Juan:
+
+Usuario: Juan
+Contraseña: Manteca67
+
+Turista 2 Carlos:
+
+Usuario: Carlos
+Contraseña: Manteca67
+
