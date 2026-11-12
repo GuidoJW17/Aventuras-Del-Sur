@@ -50,12 +50,12 @@ python manage.py runserver
 
 ## Base de datos
 
-El respaldo se encuentra en `backups/backup_inventarioAventura_db.sql`.
+El respaldo se encuentra en `DB/backup_inventarioAventura_db.sql`.
 
 Para restaurarlo:
 
 ```powershell
-cmd /c "\"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe\" -u root -p < backups\backup_inventarioAventura_db.sql"
+cmd /c "\"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe\" -u root -p < DB\backup_inventarioAventura_db.sql"
 ```
 
 ## Credenciales de prueba
@@ -73,5 +73,5 @@ inventarioAventura/
 ├── static/             # CSS
 ├── templates/          # Plantillas HTML
 ├── docs/               # Documentación y credenciales
-└── backups/            # Respaldo de MySQL
+└── DB/                 # Respaldo de MySQL
 ```

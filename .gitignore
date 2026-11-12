@@ -22,4 +22,4 @@ staticfiles/
 
 # Comprimidos
 *.zip
-backups/*.zip
+DB/*.zip
