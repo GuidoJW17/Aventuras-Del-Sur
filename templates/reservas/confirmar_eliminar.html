@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cancelar reserva{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-danger">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-3">Cancelar reserva</h1>
+                <p>
+                    ¿Seguro que quieres cancelar la reserva de
+                    <strong>{{ object.experiencia.titulo }}</strong>?
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, cancelar</button>
+                    <a href="{% url 'mis_reservas' %}" class="btn btn-secondary">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

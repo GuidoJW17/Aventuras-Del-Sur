@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}Catálogo{% endblock %}
+
+{% block contenido %}
+<h1 class="h3 mb-4">Experiencias disponibles</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<div class="row">
+    {% for experiencia in experiencias %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5">{{ experiencia.titulo }}</h2>
+                    <p class="text-muted small mb-2">{{ experiencia.categoria.nombre }}</p>
+                    <p class="mb-3">{{ experiencia.descripcion}}</p>
+                    <p class="mb-1"><strong>Precio:</strong> ${{ experiencia.precio }}</p>
+                    <p class="mb-1">
+                        <strong>Cupo:</strong>
+                        {{ experiencia.inscripciones.count }} / {{ experiencia.cupo_maximo }}
+                    </p>
+                    <p class="mb-0"><strong>Fecha:</strong> {{ experiencia.fecha_hora }}</p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    {% if user.is_authenticated %}
+                        {% if experiencia.pk in inscritas %}
+                            <span class="badge badge-success">Ya estás inscrito</span>
+                        {% elif experiencia.inscripciones.count >= experiencia.cupo_maximo %}
+                            <span class="badge badge-warning">Cupo lleno</span>
+                        {% else %}
+                            <form method="post" action="{% url 'inscribirse' experiencia.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success w-100">Inscribirse</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-success w-100">
+                            Inicia sesión para inscribirte
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">No hay experiencias activas por ahora.</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

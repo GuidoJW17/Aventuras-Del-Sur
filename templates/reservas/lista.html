@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block titulo %}Reservas{% endblock %}
+
+{% block contenido %}
+<h1 class="h3 mb-3">Todas las reservas</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-striped align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Turista</th>
+                    <th>Experiencia</th>
+                    <th>Fecha de la experiencia</th>
+                    <th>Estado</th>
+                    <th class="text-right">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.usuario.username }}</td>
+                        <td>{{ reserva.experiencia.titulo }}</td>
+                        <td>{{ reserva.experiencia.fecha_hora}}</td>
+                        <td>
+                            {% if reserva.estado_pago == "Confirmado" %}
+                                <span class="badge badge-success">Confirmado</span>
+                            {% else %}
+                                <span class="badge badge-warning">Pendiente</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-right">
+                            <a href="{% url 'reserva_editar' reserva.pk %}" class="btn btn-sm btn-outline-primary">
+                                Cambiar estado
+                            </a>
+                            <a href="{% url 'reserva_eliminar' reserva.pk %}" class="btn btn-sm btn-outline-danger">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">
+                            No hay reservas registradas.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

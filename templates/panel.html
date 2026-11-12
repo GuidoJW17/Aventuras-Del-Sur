@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block titulo %}Panel{% endblock %}
+
+{% block contenido %}
+<h1 class="h3 mb-3">Hola, {{ user.username }}</h1>
+
+
+{% if user.perfil.rol == "Admin" %}
+    <div class="alert alert-primary">
+        Tienes acceso total: usuarios, categorías, experiencias y reservas.
+    </div>
+    <div class="d-flex flex-wrap">
+        <a href="{% url 'admin:index' %}" class="btn btn-primary mr-2 mb-2">
+            Ir al panel de administración
+        </a>
+        <a href="{% url 'categoria_lista' %}" class="btn btn-outline-primary mr-2 mb-2">
+            Gestionar categorías
+        </a>
+        <a href="{% url 'experiencia_lista' %}" class="btn btn-outline-primary mr-2 mb-2">
+            Gestionar experiencias
+        </a>
+        <a href="{% url 'reserva_lista' %}" class="btn btn-outline-primary mr-2 mb-2">
+            Gestionar reservas
+        </a>
+    </div>
+{% elif user.perfil.rol == "Guia" %}
+    <div class="alert alert-success">
+        Puedes crear, ver y editar tus propias experiencias.
+    </div>
+    <a href="{% url 'experiencia_lista' %}" class="btn btn-success">
+        Mis experiencias
+    </a>
+{% else %}
+    <div class="alert alert-info">
+        Puedes ver las experiencias disponibles y gestionar tus reservas.
+    </div>
+    <div class="d-flex flex-wrap">
+        <a href="{% url 'experiencia_catalogo' %}" class="btn btn-primary mr-2 mb-2">
+            Ver catálogo
+        </a>
+        <a href="{% url 'mis_reservas' %}" class="btn btn-outline-primary mr-2 mb-2">
+            Mis reservas
+        </a>
+    </div>
+{% endif %}
+{% endblock %}

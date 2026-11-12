@@ -1,0 +1,19 @@
+/* campos de formularios generados por django */
+.django-form input,
+.django-form select,
+.django-form textarea {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+}
+
+/* foco de los campos */
+.django-form input:focus,
+.django-form select:focus,
+.django-form textarea:focus {
+    outline: none;
+    border-color: #198754;
+    box-shadow: 0 0 0 .2rem rgba(25, 135, 84, .25);
+}
